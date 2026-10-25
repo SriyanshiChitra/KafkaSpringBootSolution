@@ -34,7 +34,7 @@ public class SecurityConfig {
 		return http
 			.csrf(csrf -> csrf.disable())
 			.sessionManagement(s->s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-			.authorizeHttpRequests(auth -> auth.requestMatchers(HttpMethod.GET, "/actuator/health","/actuator/health/liveliness","/actuator/health/readiness").permitAll().requestMatchers("/api/**").hasRole("TESTER").anyRequest().denyAll())
+			.authorizeHttpRequests(auth -> auth.requestMatchers(HttpMethod.GET, "/actuator/health","/actuator/health/liveness","/actuator/health/readiness").permitAll().requestMatchers("/api/**").hasRole("TESTER").anyRequest().denyAll())
 			.httpBasic(Customizer.withDefaults())
 			.build();
 	}
