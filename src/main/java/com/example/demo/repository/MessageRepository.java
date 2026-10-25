@@ -40,7 +40,7 @@ public class MessageRepository {
 
     public int insert(EventMessage m, String topic, int partition, long offset) {
 
-        return jdbc.update("""
+        int rows= jdbc.update("""
 
                 INSERT INTO consumed_messages
 
@@ -55,6 +55,13 @@ public class MessageRepository {
             m.id(), m.type(), m.payload(),
 
              topic, partition, offset);
+             System.out.println("Inserted message with id: " + m.id() + " into consumed_messages table.");
+        
+return rows;
+
+
+            
+      
 
     }
 
