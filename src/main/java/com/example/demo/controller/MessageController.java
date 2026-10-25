@@ -1,17 +1,23 @@
 package com.example.demo.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.model.EventMessage;
 import com.example.demo.model.KafkaResponse;
+import com.example.demo.repository.MessageRepository;
+import com.example.demo.repository.MessageRepository.ConsumedRow;
 import com.example.demo.service.MessageProducer;
 
 import jakarta.validation.Valid;
 
 import java.net.URI;
+import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
 import org.springframework.http.ResponseEntity;
@@ -19,12 +25,14 @@ import org.springframework.kafka.support.SendResult;
 
 @RestController
 @RequestMapping ("/api/messages")
-public class MessageProducerController {
+public class MessageController {
 
     private final MessageProducer messageProducer;
+    private final MessageRepository messageRepository;
 
-    public MessageProducerController(MessageProducer messageProducer) {
+    public MessageController(MessageProducer messageProducer, MessageRepository messageRepository) {
         this.messageProducer = messageProducer;
+        this.messageRepository = messageRepository;
     };
 
     @PostMapping
@@ -40,6 +48,16 @@ public class MessageProducerController {
             return null;
         });
     };
+ @GetMapping 
+ public List<MessageRepository.ConsumedRow> listMessages( @RequestParam(defaultValue = "0") int page,
+        @RequestParam(defaultValue = "20") int size) {
+    
+        return messageRepository.list(page, size);
+    }
 
-  
+    @GetMapping ("/{id}")
+    public ConsumedRow find(@PathVariable UUID id) {
+      
+        return messageRepository.find(id).orElseThrow(() -> new RuntimeException("Message with id " + id + " not found"));
+    }
 }

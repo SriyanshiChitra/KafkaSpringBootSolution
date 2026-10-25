@@ -101,4 +101,11 @@ return rows;
 
                               java.time.Instant occurredAt, java.time.Instant consumedAt) {}
 
+
+    public List<ConsumedRow> list(int page,int size) {
+
+
+        return jdbc.query("SELECT * FROM consumed_messages ORDER BY consumed_at DESC LIMIT ? OFFSET ?", this::map, size, page * size);
+
+    }
 }
