@@ -1,0 +1,3 @@
+ALTER TABLE consumed_messages
+    ADD COLUMN IF NOT EXISTS description VARCHAR(200),
+    ADD COLUMN IF NOT EXISTS created_by VARCHAR(100);

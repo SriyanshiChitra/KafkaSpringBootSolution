@@ -1,9 +1,6 @@
 package com.example.demo.config;
 
-import java.beans.BeanProperty;
-
 import org.apache.kafka.common.TopicPartition;
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.core.KafkaTemplate;
