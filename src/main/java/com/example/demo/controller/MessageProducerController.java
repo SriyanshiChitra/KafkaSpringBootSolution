@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,5 +39,7 @@ public class MessageProducerController {
             System.err.println("Failed to send message: " + ex.getMessage());
             return null;
         });
-    }
+    };
+
+  
 }
