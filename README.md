@@ -34,6 +34,48 @@ REST API → Kafka Producer → Kafka Topic
 
 ## 🚀 Quick Start
 
+
+### Step 1: Start Docker Containers
+
+```bash
+docker compose -f infra.yml up -d
+```
+
+### Step 2: Create the Kafka Topic
+
+```bash
+docker compose -f infra.yml exec broker \
+  /opt/kafka/bin/kafka-topics.sh \
+  --bootstrap-server localhost:9092 \
+  --create \
+  --if-not-exists \
+  --topic messages \
+  --partitions 3 \
+  --replication-factor 1
+```
+
+
+another topic for DLQ 
+```bash
+docker compose -f infra.yml exec broker \
+  /opt/kafka/bin/kafka-topics.sh \
+  --bootstrap-server localhost:9092 \
+  --create \
+  --if-not-exists \
+  --topic messages.DLQ \
+  --partitions 3 \
+  --replication-factor 1
+```
+
+
+
+### Step 4: Start Spring Boot
+
+```bash
+./mvnw spring-boot:run
+```
+
+The application can now publish and consume messages using the `messages` Kafka topic.
 **1. Start Kafka and PostgreSQL**
 
 ```bash
