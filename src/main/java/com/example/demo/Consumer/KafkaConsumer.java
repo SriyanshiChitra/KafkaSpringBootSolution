@@ -8,7 +8,7 @@ import org.springframework.kafka.listener.BatchListenerFailedException;
 import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.stereotype.Component;
 
-import com.example.demo.model.EventMessage;
+import com.example.demo.DataModel.EventMessage;
 import com.example.demo.repository.MessageRepository;
 
 import tools.jackson.databind.ObjectMapper;

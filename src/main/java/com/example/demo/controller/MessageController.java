@@ -7,11 +7,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import com.example.demo.model.EventMessage;
-import com.example.demo.model.KafkaResponse;
+
+import com.example.demo.DataModel.EventMessage;
+import com.example.demo.DataModel.KafkaResponse;
+import com.example.demo.Producer.MessageProducer;
 import com.example.demo.repository.MessageRepository;
 import com.example.demo.repository.MessageRepository.ConsumedRow;
-import com.example.demo.service.MessageProducer;
 
 import jakarta.validation.Valid;
 

@@ -1,4 +1,4 @@
-package com.example.demo.model;
+package com.example.demo.DataModel;
 
 import java.time.Instant;
 import java.util.UUID;

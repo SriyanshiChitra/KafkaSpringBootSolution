@@ -1,6 +1,5 @@
 package com.example.demo.repository;
 
-import com.example.demo.model.EventMessage;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -9,6 +8,8 @@ import java.util.Optional;
 import java.util.UUID;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
+import com.example.demo.DataModel.EventMessage;
 
 @Repository
 public class MessageRepository {

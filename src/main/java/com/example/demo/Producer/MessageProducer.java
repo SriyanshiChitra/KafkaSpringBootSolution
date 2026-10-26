@@ -1,4 +1,4 @@
-package com.example.demo.service;
+package com.example.demo.Producer;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -6,7 +6,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.model.EventMessage;
+import com.example.demo.DataModel.EventMessage;
 
 import tools.jackson.core.JacksonException;
 import tools.jackson.databind.ObjectMapper;
