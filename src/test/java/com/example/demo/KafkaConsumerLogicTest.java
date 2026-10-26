@@ -65,7 +65,11 @@ class KafkaConsumerLogicTest {
         var existing = new ConsumedRow(id, "TEST", "d", "ORIGINAL", "u",
                 Instant.parse("2026-01-01T12:00:00Z"), Instant.now());
         when(repository.find(id)).thenReturn(Optional.of(existing));
-         verify(ack, never()).acknowledge();
+
+        var record = record(json(id, "p"));
+        var ex = assertThrows(BatchListenerFailedException.class, () -> consumer.consume(List.of(record), ack));
+        assertTrue(ex.getCause() instanceof IllegalArgumentException);
+        verify(ack, never()).acknowledge();
     }
 
     @Test

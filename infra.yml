@@ -1,65 +1,35 @@
+
 services:
-
-broker:
-
+  broker:
     image: apache/kafka:latest
-
     ports:
-
       - "9092:9092"
-
       - "29094:29094"
-
     environment:
-
       KAFKA_NODE_ID: 1
-
       KAFKA_PROCESS_ROLES: broker,controller
-
       KAFKA_CONTROLLER_QUORUM_VOTERS: 1@broker:9093
-
       KAFKA_LISTENERS: PLAINTEXT://broker:29092,CONTROLLER://broker:9093,PLAINTEXT_HOST://0.0.0.0:9092,DOCKERHOST://0.0.0.0:29094
-
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://broker:29092,PLAINTEXT_HOST://localhost:9092,DOCKERHOST://host.docker.internal:29094
-
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://broker:29092,PLAINTEXT_HOST://host.docker.internal:9092,DOCKERHOST://host.docker.internal:29094
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT,DOCKERHOST:PLAINTEXT
-
       KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
-
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: "false"
-
     volumes:
-
       - kafka-data:/tmp/kafka-logs
 
- 
-
   postgres:
-
     image: postgres:16
-
     ports:
-
       - "5432:5432"
-
     environment:
-
       POSTGRES_DB: messages
-
       POSTGRES_USER: messages
-
       POSTGRES_PASSWORD: local-dev-password
-
     volumes:
-
       - pg-data:/var/lib/postgresql/data
 
- 
-
 volumes:
-
   kafka-data:
-
   pg-data:
