@@ -107,7 +107,7 @@ curl localhost:8080/actuator/health
 - **Code Coverage:** JaCoCo report at `target/site/jacoco/index.html`.
 
 ## ☸️ Kubernetes Deployment (kind)
-
+* This project is build in MACOS. 
 **Prerequisites:** Docker Desktop, kind, kubectl.
 
 ```bash
